@@ -13,11 +13,11 @@ import gspread
 from google.oauth2.service_account import Credentials
 import io  # Use Python's built-in StringIO
 
-# Google Sheets API setup
+# Google Sheets API setup using Streamlit Secrets
 SCOPE = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-SERVICE_ACCOUNT_FILE = "secret.json"  # Replace with your actual file
 
-creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE)
+# Authenticate using Streamlit secrets
+creds = Credentials.from_service_account_info(st.secrets["google_service_account"], scopes=SCOPE)
 client = gspread.authorize(creds)
 
 # Test if authentication works
@@ -31,10 +31,6 @@ print(client.open("Escalations-TA").sheet1.get_all_records(expected_headers=expe
 headers = client.open("Escalations-TA").sheet1.row_values(1)
 print("Detected Headers:", headers)
 
-# Authenticate and connect to Google Sheets
-creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE)
-client = gspread.authorize(creds)
-
 # Google Sheet details
 SHEET_ID = "11FoqJicHt3BGpzAmBnLi1FQFN-oeTxR_WGKszARDcR4"
 SHEET_NAME = "Sheet1"  # Change if needed
@@ -45,7 +41,6 @@ REQUIRED_COLUMNS = [
     "Subject line (Manual TA Escalation)", "Parent Category", "Case Category",
     "Escalated To", "Escalated By", "Status"
 ]
-
 
 # Function to fetch and clean data
 @st.cache_data(ttl=300)  # Cache for 5 minutes
