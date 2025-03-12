@@ -21,8 +21,15 @@ creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE
 client = gspread.authorize(creds)
 
 # Test if authentication works
-print(client.open("Escalations-TA").sheet1.get_all_records())
+expected_headers = (
+    "Mode", "Type", "Escalation Date", "Domain", "BID", "Account name",
+    "Subject line (Manual TA Escalation)", "Parent Category", "Case Category",
+    "Escalated To", "Escalated By", "Status"  # Use only the required headers
+)
+print(client.open("Escalations-TA").sheet1.get_all_records(expected_headers=expected_headers))
 
+headers = client.open("Escalations-TA").sheet1.row_values(1)
+print("Detected Headers:", headers)
 
 # Authenticate and connect to Google Sheets
 creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE)
