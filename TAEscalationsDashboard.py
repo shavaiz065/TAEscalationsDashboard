@@ -1,3 +1,12 @@
+import sys
+import os
+import gspread
+
+print("Python Version:", sys.version)
+print("Python Executable:", sys.executable)
+print("Installed Packages:", os.popen('pip list').read())
+
+
 import streamlit as st
 import pandas as pd
 import gspread
@@ -6,7 +15,14 @@ import io  # Use Python's built-in StringIO
 
 # Google Sheets API setup
 SCOPE = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-SERVICE_ACCOUNT_FILE = "secret.json"  # Replace with your JSON file path
+SERVICE_ACCOUNT_FILE = "secret.json"  # Replace with your actual file
+
+creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE)
+client = gspread.authorize(creds)
+
+# Test if authentication works
+print(client.open("Escalations-TA").sheet1.get_all_records())
+
 
 # Authenticate and connect to Google Sheets
 creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE)
