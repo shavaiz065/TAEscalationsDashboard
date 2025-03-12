@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb836837-049e-4412-b441-0f21af90d767" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/TAEscalationsDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/TAEscalationsDashboard.py" afterDir="false" />
-    </list>
+    <list default="true" id="bb836837-049e-4412-b441-0f21af90d767" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741754458800</updated>
-      <workItem from="1741754460029" duration="6540000" />
+      <workItem from="1741754460029" duration="6841000" />
     </task>
     <servers />
   </component>
